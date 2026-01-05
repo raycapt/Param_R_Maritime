@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R Maritime - Private Investment Opportunity</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        :root {--primary-dark: #003366; --primary-blue: #0066CC; --accent-blue: #00A3E0; --gold: #FFB81C; --light-bg: #f0f8ff; --text-dark: #333; --text-light: #666; --white: #ffffff;}
+        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text-dark); background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh;}
+        nav {background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0, 51, 102, 0.2);}
+        nav .container {max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;}
+        .logo {font-size: 1.8rem; font-weight: bold; color: var(--white); letter-spacing: 2px;}
+        nav ul {list-style: none; display: flex; gap: 2rem;}
+        nav a {color: var(--white); text-decoration: none; transition: color 0.3s ease; font-weight: 500;}
+        nav a:hover {color: var(--gold);}
+        .container {max-width: 1200px; margin: 0 auto; padding: 0 2rem;}
+        .hero {background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%); color: var(--white); padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden;}
+        .hero h1 {font-size: 3.5rem; margin-bottom: 1rem; font-weight: 700;}
+        .hero p {font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.95;}
+        section {padding: 4rem 2rem; background: var(--white); margin: 2rem 0; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 51, 102, 0.1);}
+        h2 {font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 2rem; text-align: center; position: relative; padding-bottom: 1rem;}
+        h2::after {content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: linear-gradient(90deg, var(--accent-blue), var(--gold)); border-radius: 2px;}
+        h3 {font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 1rem;}
+        h4 {font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 0.5rem; text-align: center;}
+        .cards-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;}
+        .card {background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%); padding: 2rem; border-radius: 10px; border-left: 5px solid var(--accent-blue); transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(0, 51, 102, 0.1);}
+        .card:hover {transform: translateY(-10px); box-shadow: 0 8px 25px rgba(0, 51, 102, 0.15); border-left-color: var(--gold);}
+        .card h3 {color: var(--primary-dark); margin-bottom: 1rem;}
+        .card p {color: var(--text-light); line-height: 1.8;}
+        .card ul {list-style: none; margin-top: 1rem;}
+        .card li {padding: 0.5rem 0; color: var(--text-light); display: flex; align-items: center;}
+        .card li::before {content: '✓'; color: var(--accent-blue); font-weight: bold; margin-right: 0.8rem; font-size: 1.2rem;}
+        .highlight-box {background: linear-gradient(135deg, var(--light-bg) 0%, rgba(0, 163, 224, 0.1) 100%); border-left: 5px solid var(--primary-dark); padding: 2rem; border-radius: 8px; margin: 2rem 0; text-align: center; font-size: 1.2rem; font-weight: 500; color: var(--primary-dark);}
+        .stats {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 2rem 0;}
+        .stat {text-align: center; padding: 2rem; background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%); color: var(--white); border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 51, 102, 0.2); transition: all 0.3s ease;}
+        .stat:hover {transform: scale(1.05);}
+        .stat-number {font-size: 2.5rem; font-weight: bold; color: var(--gold); margin-bottom: 0.5rem;}
+        .stat-label {font-size: 1rem; opacity: 0.95;}
+        .return-profile {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;}
+        .return-item {background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-blue) 100%); color: var(--white); padding: 2rem; border-radius: 10px; text-align: center; box-shadow: 0 4px 15px rgba(0, 102, 204, 0.2); transition: all 0.3s ease;}
+        .return-item:hover {transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0, 102, 204, 0.3);}
+        .return-item h4 {font-size: 1.2rem; margin-bottom: 1rem; opacity: 0.95; color: var(--white);}
+        .return-value {font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;}
+        .return-description {font-size: 0.95rem; opacity: 0.9;}
+        .chart-container {display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin: 2rem 0;}
+        .chart-box {background: var(--light-bg); padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 51, 102, 0.1); transition: all 0.3s ease;}
+        .chart-box:hover {box-shadow: 0 4px 15px rgba(0, 51, 102, 0.15); transform: translateY(-5px);}
+        .chart-box canvas {max-width: 100%; height: auto;}
+        .summary-box {background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%); color: var(--white); padding: 3rem; border-radius: 10px; margin: 3rem 0; box-shadow: 0 8px 30px rgba(0, 51, 102, 0.3); text-align: center;}
+        .summary-box h2 {color: var(--white);}
+        .summary-box h2::after {background: var(--gold);}
+        .summary-points {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;}
+        .summary-point {background: rgba(255, 255, 255, 0.1); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--gold); transition: all 0.3s ease;}
+        .summary-point:hover {background: rgba(255, 255, 255, 0.15); transform: translateX(5px);}
+        .summary-point p {font-size: 1.1rem; font-weight: 500;}
+        .schedule-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;}
+        .schedule-item {background: linear-gradient(135deg, var(--gold) 0%, #FFC93D 100%); color: var(--primary-dark); padding: 2rem; border-radius: 10px; text-align: center; box-shadow: 0 4px 15px rgba(255, 184, 28, 0.2); transition: all 0.3s ease;}
+        .schedule-item:hover {transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 184, 28, 0.3);}
+        .schedule-item h4 {font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--primary-dark);}
+        .schedule-item p {font-size: 1.5rem; font-weight: bold;}
+        footer {background: var(--primary-dark); color: var(--white); text-align: center; padding: 2rem; margin-top: 4rem;}
+        footer p {margin: 0.5rem 0; opacity: 0.9;}
+        @media (max-width: 768px) {.hero h1 {font-size: 2.5rem;} .hero p {font-size: 1.1rem;} h2 {font-size: 2rem;} nav ul {gap: 1rem; font-size: 0.9rem;} section {margin: 1rem 0;} .chart-container {grid-template-columns: 1fr;}}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">⚓ R MARITIME</div>
+            <ul>
+                <li><a href="#opportunity">Opportunity</a></li>
+                <li><a href="#returns">Returns</a></li>
+                <li><a href="#protection">Protection</a></li>
+                <li><a href="#summary">Summary</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>R MARITIME</h1>
+            <p>Private Investment Opportunity: Asset-Backed Chemical Tanker Investment</p>
+        </div>
+    </section>
+
+    <section id="opportunity">
+        <div class="container">
+            <h2>The Investment Opportunity</h2>
+            <div class="highlight-box">
+                <p>A capital-protected maritime investment combining hard assets with operational upside.</p>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">$10M</div>
+                    <div class="stat-label">Investment Required</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">60%</div>
+                    <div class="stat-label">Equity Ownership</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$60M</div>
+                    <div class="stat-label">Asset Value</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1.45x</div>
+                    <div class="stat-label">Asset Coverage</div>
+                </div>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>What You Own</h3>
+                    <p>Two newbuild chemical tankers, valued ~15% above contract price, held in ring-fenced SPVs.</p>
+                    <p>Partnership with <strong>E-Maritime</strong>, an established operator managing 5 chemical tankers globally.</p>
+                    <p style="font-style: italic; margin-top: 1rem;"><strong>You own ships. They earn. Professionals operate them.</strong></p>
+                </div>
+                <div class="card">
+                    <h3>Capital Protection</h3>
+                    <ul>
+                        <li>Non-recourse debt – Risk capped at equity</li>
+                        <li>Newbuild assets – Lowest technical risk</li>
+                        <li>Strong asset cover – Ships worth more than equity</li>
+                        <li>Multiple exit options – Sell, refinance, or strategic exit</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Why Now?</h3>
+                    <ul>
+                        <li>Stable rates ~10% above long-term averages</li>
+                        <li>~2/3 of global fleet is over 15 years old</li>
+                        <li>Highly fragmented market – top 5 control only ~7%</li>
+                        <li>Institutional capital entering the space</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="returns">
+        <div class="container">
+            <h2>Return Profile</h2>
+            <div class="return-profile">
+                <div class="return-item">
+                    <h4>Year 1 (Conservative)</h4>
+                    <div class="return-value">13%</div>
+                    <div class="return-description">ROE / $1.3M per year</div>
+                </div>
+                <div class="return-item">
+                    <h4>Optimised Phase (3-6 months)</h4>
+                    <div class="return-value">20%</div>
+                    <div class="return-description">ROE / $2.0M per year</div>
+                </div>
+                <div class="return-item">
+                    <h4>Peak Window (Year 2+)</h4>
+                    <div class="return-value">25%+</div>
+                    <div class="return-description">ROE / $2.5M+ per year</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>How returns improve:</strong> Better financing → pooled operations → smarter cargo matching → more earning days, less idle time.</p>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-box">
+                    <h4>Investment Return Profile (%)</h4>
+                    <canvas id="returnChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h4>Annual Cash Yield ($M)</h4>
+                    <canvas id="yieldChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="protection">
+        <div class="container">
+            <h2>Capital Protection & Market Opportunity</h2>
+
+            <div class="chart-container">
+                <div class="chart-box">
+                    <h4>Asset Coverage Ratio</h4>
+                    <canvas id="coverageChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h4>Investment Structure</h4>
+                    <canvas id="structureChart"></canvas>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin-top: 2rem;">Investment Schedule</h3>
+            <div class="schedule-grid">
+                <div class="schedule-item">
+                    <h4>January 2026</h4>
+                    <p>USD 4.0M</p>
+                </div>
+                <div class="schedule-item">
+                    <h4>April 2026</h4>
+                    <p>USD 6.0M</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="summary">
+        <div class="summary-box">
+            <h2>In Summary</h2>
+            <div class="summary-points">
+                <div class="summary-point">
+                    <p>You provide capital (60%).</p>
+                </div>
+                <div class="summary-point">
+                    <p>Professional operators run the ships (40%).</p>
+                </div>
+                <div class="summary-point">
+                    <p>Hard assets generate cash.</p>
+                </div>
+                <div class="summary-point">
+                    <p>Upside comes from execution — downside is protected by steel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>R Maritime</strong></p>
+        <p>Singapore | Dubai</p>
+        <p style="margin-top: 1rem; opacity: 0.7; font-size: 0.9rem;">This document is confidential and intended for qualified investors only.</p>
+    </footer>
+
+    <script>
+        // Chart.js configuration
+        Chart.defaults.font.family = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+
+        // Return Profile Chart
+        const returnCtx = document.getElementById('returnChart').getContext('2d');
+        new Chart(returnCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Year 1\n(Conservative)', 'Optimised Phase\n(3-6 months)', 'Peak Window\n(Year 2+)'],
+                datasets: [{
+                    label: 'ROE %',
+                    data: [13, 20, 25],
+                    backgroundColor: ['#0066CC', '#00A3E0', '#003366'],
+                    borderColor: ['#003366', '#003366', '#003366'],
+                    borderWidth: 2,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {color: '#333', font: {size: 12}}
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 30,
+                        ticks: {callback: function(value) {return value + '%';}},
+                        grid: {color: '#f0f0f0'}
+                    },
+                    x: {grid: {display: false}}
+                }
+            }
+        });
+
+        // Annual Cash Yield Chart
+        const yieldCtx = document.getElementById('yieldChart').getContext('2d');
+        new Chart(yieldCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Year 1\n(Conservative)', 'Optimised Phase\n(3-6 months)', 'Peak Window\n(Year 2+)'],
+                datasets: [{
+                    label: 'Annual Yield ($M)',
+                    data: [1.3, 2.0, 2.5],
+                    backgroundColor: ['#FFB81C', '#FFC93D', '#FFD966'],
+                    borderColor: ['#003366', '#003366', '#003366'],
+                    borderWidth: 2,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {color: '#333', font: {size: 12}}
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 3,
+                        ticks: {callback: function(value) {return '$' + value + 'M';}},
+                        grid: {color: '#f0f0f0'}
+                    },
+                    x: {grid: {display: false}}
+                }
+            }
+        });
+
+        // Asset Coverage Ratio Chart
+        const coverageCtx = document.getElementById('coverageChart').getContext('2d');
+        new Chart(coverageCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Asset Value', 'Equity Required'],
+                datasets: [{
+                    label: 'Amount ($M)',
+                    data: [60, 10],
+                    backgroundColor: ['#00A3E0', '#FFB81C'],
+                    borderColor: '#003366',
+                    borderWidth: 2,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {color: '#333', font: {size: 12}}
+                    },
+                    tooltip: {
+                        callbacks: {
+                            afterLabel: function() {return 'Coverage: 1.45x';}
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 70,
+                        ticks: {callback: function(value) {return '$' + value + 'M';}},
+                        grid: {color: '#f0f0f0'}
+                    },
+                    x: {grid: {display: false}}
+                }
+            }
+        });
+
+        // Investment Structure Pie Chart
+        const structureCtx = document.getElementById('structureChart').getContext('2d');
+        new Chart(structureCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Your Capital (60%)', 'Operator Capital (40%)'],
+                datasets: [{
+                    data: [60, 40],
+                    backgroundColor: ['#003366', '#00A3E0'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {color: '#333', font: {size: 12}, padding: 15}
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
